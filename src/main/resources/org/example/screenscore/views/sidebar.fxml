@@ -9,8 +9,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="350.0" minHeight="-Infinity" minWidth="180.0" prefHeight="600.0" prefWidth="250.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="350.0" minHeight="-Infinity" minWidth="180.0" prefHeight="600.0" prefWidth="250.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.screenscore.controllers.SideBarController">
    <children>
       <Label prefHeight="55.0" prefWidth="242.0" text="Screen Score">
          <textFill>
@@ -42,6 +41,7 @@
       <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Movies" />
       <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Series" />
       <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Anime" />
+      <Button fx:id="newReview" mnemonicParsing="false" onAction="#onNewReviewClicked" prefHeight="26.0" prefWidth="120.0" text="Create New" />
    </children>
    <padding>
       <Insets left="20.0" />
