@@ -7,9 +7,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-      xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.screenscore.controllers.ReviewCreatorController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.screenscore.controllers.ReviewCreatorController">
    <children>
       <Button fx:id="createReviewButton" layoutX="274.0" layoutY="344.0" mnemonicParsing="false" onAction="#onCreateReviewButtonClicked" text="СОздать" />
       <Label layoutX="100.0" layoutY="60.0" text="Название" />
@@ -25,5 +23,7 @@
       </RadioButton>
       <RadioButton fx:id="animeRbutton" layoutX="221.0" layoutY="200.0" mnemonicParsing="false" text="Аниме" toggleGroup="$type" />
       <RadioButton fx:id="seriesRbutton" layoutX="357.0" layoutY="200.0" mnemonicParsing="false" text="Сериал" toggleGroup="$type" />
+      <Label layoutX="102.0" layoutY="18.0" text="url" />
+      <TextField fx:id="urlField" layoutX="192.0" layoutY="14.0" />
    </children>
 </Pane>

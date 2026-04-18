@@ -4,14 +4,14 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.screenscore.controllers.ScreenScoreController">
     <left>
-        <fx:include source="views/sidebar.fxml"/>
+        <fx:include source="views/sidebar.fxml" fx:id="sidebar"/>
     </left>
 
     <center>
-        <fx:include source="views/main.fxml"/>
+        <fx:include source="views/main.fxml" fx:id="main"/>
     </center>
 
     <right>
-        <fx:include source="views/detail.fxml"/>
+        <fx:include source="views/detail.fxml" fx:id="detail"/>
     </right>
 </BorderPane>

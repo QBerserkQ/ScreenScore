@@ -7,4 +7,36 @@ public class ReviewClass {
     private String description;
     private Type type;
     private String imageUrl;
+
+    public  ReviewClass(int rating, String title, String description, Type type, String imageUrl) {
+        this.rating = rating;
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.imageUrl = imageUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }
