@@ -6,6 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.screenscore.models.ReviewClass;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class ReviewCardController {
     @FXML
     private Label titleLabel;
@@ -28,8 +32,15 @@ public class ReviewCardController {
 
         if (url != null && !url.isBlank()) {
             try {
-                Image img = new Image(url, true);
-                urlLabel.setImage(img);
+                URL imageUrl = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) imageUrl.openConnection();
+
+                connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+                InputStream inputStream = connection.getInputStream();
+                Image image = new Image(inputStream);
+
+                urlLabel.setImage(image);
             } catch (Exception e) {
                 System.out.println("Bad image URL: " + url);
                 e.printStackTrace();
