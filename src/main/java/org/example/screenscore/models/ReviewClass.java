@@ -44,4 +44,8 @@ public class ReviewClass {
     public String getImageUrl() {
         return imageUrl;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
