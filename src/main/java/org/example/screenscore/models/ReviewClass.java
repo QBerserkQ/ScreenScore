@@ -16,6 +16,11 @@ public class ReviewClass {
         this.imageUrl = imageUrl;
     }
 
+    public  ReviewClass(int id, int rating, String title, String description, Type type, String imageUrl) {
+        this(rating, title, description, type, imageUrl);
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
