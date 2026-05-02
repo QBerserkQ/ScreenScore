@@ -3,35 +3,50 @@ package org.example.screenscore.dao;
 import org.example.screenscore.models.ReviewClass;
 import org.example.screenscore.models.Type;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewDao {
-    private static DataBaseConnection dbConnection = new DataBaseConnection();
-
-    public void addReview(ReviewClass rw){
-        String sql = "INSERT INTO ReviewDb(rating, title, " +
+    public ReviewClass addReview(ReviewClass rw){
+        String sql = "INSERT INTO Reviews(rating, title, " +
                 "description, type, image_url) VALUES(?,?,?,?,?)";
 
         try (var conn = DataBaseConnection.getConnection();
-             var pstmt = conn.prepareStatement(sql)) {
+             var pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setInt(1, rw.getRating());
             pstmt.setString(2, rw.getTitle());
             pstmt.setString(3, rw.getDescription());
             pstmt.setString(4, rw.getType().toString());
             pstmt.setString(5, rw.getImageUrl());
-            pstmt.executeUpdate();
+            int affectedRows = pstmt.executeUpdate();
+
+            if(affectedRows == 0){
+                throw new RuntimeException("INSERT не добавил ни одной строки (affectedRows=0)");
+            }
+
+            try(ResultSet key = pstmt.getGeneratedKeys()) {
+                if(key.next()){
+                    int generatedId = key.getInt(1);
+                    rw.setId(generatedId);
+                }else {
+                    throw new RuntimeException("БД не вернула сгенерированный ключ (id)");
+                }
+            }
+
+            return rw;
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException("Ошибка при добавлении Review", e);
         }
     }
 
     public List<ReviewClass> getAllReviews(){
         List<ReviewClass> reviews = new ArrayList<>();
 
-        var sql = "SELECT id, rating, title, description, type, image_url FROM ReviewDb";
+        var sql = "SELECT id, rating, title, description, type, image_url FROM Reviews";
 
         try (var conn = DataBaseConnection.getConnection();
              var stmt = conn.createStatement();
