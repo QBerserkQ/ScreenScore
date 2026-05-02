@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DataBaseConnection {
     private static final String urlDb = "jdbc:sqlite:review.db";
 
-    private static final String sql = "CREATE TABLE IF NOT EXISTS ReviewDb ("
+    private static final String sql = "CREATE TABLE IF NOT EXISTS Reviews ("
             + "	id INTEGER PRIMARY KEY AUTOINCREMENT,"
             + "	rating INTEGER NOT NULL,"
             + "	title TEXT NOT NULL,"
@@ -16,7 +16,7 @@ public class DataBaseConnection {
             + "	image_url TEXT"
             + ");";
 
-    public DataBaseConnection() {
+    static  {
         try (var conn = getConnection();
              var stmt = conn.createStatement())
         {
