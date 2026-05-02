@@ -4,13 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import org.example.screenscore.models.ReviewClass;
+import org.example.screenscore.models.Type;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ReviewCardController {
+    @FXML
+    private VBox vbox;
     @FXML
     private Label titleLabel;
 
@@ -27,6 +31,18 @@ public class ReviewCardController {
         titleLabel.setText(review.getTitle());
         ratingLabel.setText(String.valueOf(review.getRating()));
         descriptionLabel.setText(review.getDescription());
+
+        String style;
+        Type t = review.getType();
+
+        if(t == Type.Movie)
+            style = "-fx-background-color: #00739e;";
+        else if(t == Type.Series)
+            style = "-fx-background-color: #003049;";
+        else
+            style = "-fx-background-color: #e95ea6;";
+
+        vbox.setStyle(style);
 
         String url = review.getImageUrl();
 
