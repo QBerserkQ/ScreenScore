@@ -27,11 +27,36 @@ public class ReviewCardController {
     @FXML
     private ImageView urlLabel;
 
-    public void setData(ReviewClass review) {
-        titleLabel.setText(review.getTitle());
-        ratingLabel.setText(String.valueOf(review.getRating()));
-        descriptionLabel.setText(review.getDescription());
+    private ReviewClass review;
 
+    public void setData(ReviewClass review) {
+        this.review = review;
+        render();
+    }
+
+    private void render() {
+        setTitleLabel();
+        setRatingLabel();
+        setDescriptionLabel();
+
+        setStyleType();
+
+        setUrlLabel();
+    }
+
+    private void setTitleLabel(){
+        titleLabel.setText(review.getTitle());
+    }
+
+    private void setRatingLabel(){
+        ratingLabel.setText(String.valueOf(review.getRating()));
+    }
+
+    private void setDescriptionLabel(){
+        descriptionLabel.setText(review.getDescription());
+    }
+
+    private void setStyleType(){
         String style;
         Type t = review.getType();
 
@@ -43,7 +68,9 @@ public class ReviewCardController {
             style = "-fx-background-color: #e95ea6;";
 
         vbox.setStyle(style);
+    }
 
+    private void setUrlLabel(){
         String url = review.getImageUrl();
 
         if (url != null && !url.isBlank()) {
