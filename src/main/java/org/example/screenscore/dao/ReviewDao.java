@@ -80,4 +80,17 @@ public class ReviewDao {
 
         return reviews;
     }
+
+    public void deleteReview(int id){
+        String sql = "DELETE FROM Reviews WHERE id = ?";
+
+        try (var conn = DataBaseConnection.getConnection();
+             var pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при добавлении Review", e);
+        }
+    }
 }

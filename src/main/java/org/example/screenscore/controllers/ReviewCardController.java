@@ -1,5 +1,6 @@
 package org.example.screenscore.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -11,6 +12,7 @@ import org.example.screenscore.models.Type;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.function.Consumer;
 
 public class ReviewCardController {
     @FXML
@@ -28,6 +30,12 @@ public class ReviewCardController {
     private ImageView urlLabel;
 
     private ReviewClass review;
+
+    private Consumer<Integer> onDelete;
+
+    public void setOnDelete(Consumer<Integer> callback) {
+        this.onDelete = callback;
+    }
 
     public void setData(ReviewClass review) {
         this.review = review;
@@ -91,5 +99,9 @@ public class ReviewCardController {
         } else {
             urlLabel.setImage(null);
         }
+    }
+
+    public void onDeleteButtonClicked() {
+        onDelete.accept(review.getId());
     }
 }

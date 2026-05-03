@@ -18,6 +18,7 @@ public class ScreenScoreController {
 
     @FXML
     public void initialize() {
+        mainController.setReviewService(reviewService);
         List<ReviewClass> list = reviewService.getAllReviews();
 
         for (ReviewClass review : list) {

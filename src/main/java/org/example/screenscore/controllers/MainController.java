@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import org.example.screenscore.models.ReviewClass;
+import org.example.screenscore.services.ReviewService;
 
 import java.io.IOException;
 
@@ -16,9 +17,15 @@ public class MainController {
     @FXML
     private ScrollPane scrollPane;
 
+    private ReviewService reviewService;
+
     @FXML
     public void initialize() {
         flowPane.prefWidthProperty().bind(scrollPane.widthProperty());
+    }
+
+    public void setReviewService(ReviewService reviewService) {
+        this.reviewService = reviewService;
     }
 
     public void addReviewCard(ReviewClass review) {
@@ -28,6 +35,11 @@ public class MainController {
 
             ReviewCardController cardController = loader.getController();
             cardController.setData(review);
+
+            cardController.setOnDelete(id -> {
+                reviewService.deleteReview(id);
+                flowPane.getChildren().remove(card);
+            });
 
             flowPane.getChildren().add(card);
         }catch (IOException e){

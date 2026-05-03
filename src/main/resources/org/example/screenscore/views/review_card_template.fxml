@@ -19,7 +19,7 @@
       <HBox alignment="CENTER" spacing="50.0">
          <children>
             <Button mnemonicParsing="false" text="Update" />
-            <Button mnemonicParsing="false" text="Delete" />
+            <Button mnemonicParsing="false" text="Delete" onAction="#onDeleteButtonClicked"/>
          </children>
       </HBox>
    </children>
