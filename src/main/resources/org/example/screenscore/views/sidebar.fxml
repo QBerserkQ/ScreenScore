@@ -37,10 +37,10 @@
             <Font name="Century Gothic" size="24.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="All" />
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Movies" />
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Series" />
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Anime" />
+      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="All" onAction="#onAllReviewsClicked"/>
+      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Movies" onAction="#onMovieReviewsClicked"/>
+      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Series" onAction="#onSeriesReviewsClicked"/>
+      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Anime" onAction="#onAnimeReviewsClicked"/>
       <Button fx:id="newReview" mnemonicParsing="false" onAction="#onNewReviewClicked" prefHeight="26.0" prefWidth="120.0" text="Create New" />
    </children>
    <padding>

@@ -2,6 +2,7 @@ package org.example.screenscore.services;
 
 import org.example.screenscore.dao.ReviewDao;
 import org.example.screenscore.models.ReviewClass;
+import org.example.screenscore.models.Type;
 
 import java.util.List;
 
@@ -24,5 +25,9 @@ public class ReviewService {
 
     public void updateReview(ReviewClass review){
         reviewDao.updateReview(review);
+    }
+
+    public List<ReviewClass> getReviewsByType(Type type){
+        return reviewDao.getByType(type);
     }
 }

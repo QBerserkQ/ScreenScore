@@ -81,6 +81,44 @@ public class ReviewDao {
         return reviews;
     }
 
+    public List<ReviewClass> getByType(Type type){
+        String sql = "SELECT * FROM Reviews WHERE type = ?";
+        List<ReviewClass> reviews = new ArrayList<>();
+
+        try (var conn = DataBaseConnection.getConnection();
+             var pstmt = conn.prepareStatement(sql)) {
+            ReviewClass review;
+
+            pstmt.setString(1, String.valueOf(type));
+            var rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int rating = rs.getInt("rating");
+                String title = rs.getString("title");
+                String description = rs.getString("description");
+
+                if(description==null){
+                    description = "---";
+                }
+
+                Type type1 = Type.valueOf(rs.getString("type"));
+                String imageUrl = rs.getString("image_url");
+                if(imageUrl==null){
+                    imageUrl = "photo";
+                }
+
+                review = new ReviewClass(id, rating, title, description, type1, imageUrl);
+
+                reviews.add(review);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при получении из Review", e);
+        }
+
+        return reviews;
+    }
+
     public void deleteReview(int id){
         String sql = "DELETE FROM Reviews WHERE id = ?";
 
@@ -90,7 +128,7 @@ public class ReviewDao {
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка при добавлении Review", e);
+            throw new RuntimeException("Ошибка при удалении Review", e);
         }
     }
 
@@ -114,7 +152,7 @@ public class ReviewDao {
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка при добавлении Review", e);
+            throw new RuntimeException("Ошибка при изменении Review", e);
         }
     }
 }

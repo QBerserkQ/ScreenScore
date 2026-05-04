@@ -51,4 +51,7 @@ public class MainController {
             e.printStackTrace();
         }
     }
+    public void clearReviewCard() {
+        flowPane.getChildren().clear();
+    }
 }
