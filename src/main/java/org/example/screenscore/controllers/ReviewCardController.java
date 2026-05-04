@@ -79,7 +79,7 @@ public class ReviewCardController {
         if(t == Type.Movie)
             style = "-fx-background-color: #00739e;";
         else if(t == Type.Series)
-            style = "-fx-background-color: #003049;";
+            style = "-fx-background-color: #00839e;";
         else
             style = "-fx-background-color: #e95ea6;";
 

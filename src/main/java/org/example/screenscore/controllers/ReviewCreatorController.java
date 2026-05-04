@@ -75,7 +75,15 @@ public class ReviewCreatorController {
     private void readData(ReviewClass rw){
         String title = titleField.getText();
         String url = urlField.getText();
-        int rating = Integer.parseInt(ratingField.getText());
+
+        int rating;
+        try{
+            rating = Integer.parseInt(ratingField.getText());
+        }catch(NumberFormatException e){
+            rating = 0;
+            e.printStackTrace();
+        }
+
 
         if(rating < 0) rating = 0;
         if(rating > 10) rating = 10;
