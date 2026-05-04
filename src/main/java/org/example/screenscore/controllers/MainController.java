@@ -41,6 +41,11 @@ public class MainController {
                 flowPane.getChildren().remove(card);
             });
 
+            cardController.setOnReviewUpdated(rw -> {
+                reviewService.updateReview(rw);
+                cardController.setData(review);
+            });
+
             flowPane.getChildren().add(card);
         }catch (IOException e){
             e.printStackTrace();

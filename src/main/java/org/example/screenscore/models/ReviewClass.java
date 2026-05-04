@@ -8,6 +8,8 @@ public class ReviewClass {
     private Type type;
     private String imageUrl;
 
+    public ReviewClass() {}
+
     public  ReviewClass(int rating, String title, String description, Type type, String imageUrl) {
         this.rating = rating;
         this.title = title;
@@ -47,5 +49,25 @@ public class ReviewClass {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -2,13 +2,18 @@ package org.example.screenscore.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.example.screenscore.models.ReviewClass;
 import org.example.screenscore.models.Type;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -32,11 +37,14 @@ public class ReviewCardController {
     private ReviewClass review;
 
     private Consumer<Integer> onDelete;
+    private Consumer<ReviewClass> onReviewUpdated;
 
     public void setOnDelete(Consumer<Integer> callback) {
         this.onDelete = callback;
     }
-
+    public void setOnReviewUpdated(Consumer<ReviewClass> callback) {
+        this.onReviewUpdated = callback;
+    }
     public void setData(ReviewClass review) {
         this.review = review;
         render();
@@ -103,5 +111,29 @@ public class ReviewCardController {
 
     public void onDeleteButtonClicked() {
         onDelete.accept(review.getId());
+    }
+
+    public void onUpdateButtonClicked(){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/screenscore/views/review_creator.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Update Review");
+            stage.setScene(new Scene(root));
+
+            ReviewCreatorController controller = loader.getController();
+            controller.setEditMode(review);
+            controller.setOnReviewUpdated(review -> {
+                if(onReviewUpdated != null){
+                    onReviewUpdated.accept(review);
+                }
+                stage.close();
+            });
+
+            stage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

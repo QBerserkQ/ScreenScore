@@ -18,7 +18,7 @@
       <Label fx:id="descriptionLabel" maxWidth="300.0" text="Label" wrapText="true" />
       <HBox alignment="CENTER" spacing="50.0">
          <children>
-            <Button mnemonicParsing="false" text="Update" />
+            <Button mnemonicParsing="false" text="Update" onAction="#onUpdateButtonClicked"/>
             <Button mnemonicParsing="false" text="Delete" onAction="#onDeleteButtonClicked"/>
          </children>
       </HBox>

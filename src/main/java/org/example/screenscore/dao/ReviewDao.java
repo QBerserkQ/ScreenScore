@@ -46,7 +46,7 @@ public class ReviewDao {
     public List<ReviewClass> getAllReviews(){
         List<ReviewClass> reviews = new ArrayList<>();
 
-        var sql = "SELECT id, rating, title, description, type, image_url FROM Reviews";
+        String sql = "SELECT id, rating, title, description, type, image_url FROM Reviews";
 
         try (var conn = DataBaseConnection.getConnection();
              var stmt = conn.createStatement();
@@ -87,6 +87,30 @@ public class ReviewDao {
         try (var conn = DataBaseConnection.getConnection();
              var pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при добавлении Review", e);
+        }
+    }
+
+    public void updateReview(ReviewClass rw){
+        String sql = "UPDATE Reviews SET rating = ? , "
+                + "title = ?, "
+                + "description = ?, "
+                + "type = ?, "
+                + "image_url = ? "
+                + "WHERE id = ?";
+
+        try (var conn = DataBaseConnection.getConnection();
+             var pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, rw.getRating());
+            pstmt.setString(2, rw.getTitle());
+            pstmt.setString(3, rw.getDescription());
+            pstmt.setString(4, rw.getType().toString());
+            pstmt.setString(5, rw.getImageUrl());
+            pstmt.setInt(6, rw.getId());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
