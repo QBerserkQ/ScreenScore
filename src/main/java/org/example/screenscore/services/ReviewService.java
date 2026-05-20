@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ReviewService {
     private static final ReviewDao reviewDao = new ReviewDao();
+    private static final ImageService imageService = new ImageService();
 
     public ReviewClass addReview(ReviewClass review){
         return reviewDao.addReview(review);
@@ -20,7 +21,11 @@ public class ReviewService {
     }
 
     public void deleteReview(int id){
-        reviewDao.deleteReview(id);
+        String imageUrl = reviewDao.deleteReview(id);
+        int count = reviewDao.countByImageUrl(imageUrl);
+        if(count == 0){
+            imageService.deleteImages(imageUrl);
+        }
     }
 
     public void updateReview(ReviewClass review){

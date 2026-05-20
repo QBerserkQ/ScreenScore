@@ -119,7 +119,27 @@ public class ReviewDao {
         return reviews;
     }
 
-    public void deleteReview(int id){
+    private String getImage_url(int id){
+        String sql = "SELECT * FROM Reviews WHERE id = ?";
+        String imageUrl = "images/default.jpg";
+
+        try (var conn = DataBaseConnection.getConnection();
+             var pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            var rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+                imageUrl = rs.getString("image_url");
+            }
+
+            return imageUrl;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при получении из Review", e);
+        }
+    }
+
+    public String deleteReview(int id){
+        String imageUrl = getImage_url(id);
         String sql = "DELETE FROM Reviews WHERE id = ?";
 
         try (var conn = DataBaseConnection.getConnection();
@@ -130,6 +150,8 @@ public class ReviewDao {
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при удалении Review", e);
         }
+
+        return imageUrl;
     }
 
     public void updateReview(ReviewClass rw){
@@ -154,5 +176,22 @@ public class ReviewDao {
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при изменении Review", e);
         }
+    }
+
+    public int countByImageUrl(String imageUrl){
+        String sql = "SELECT COUNT(*) FROM Reviews WHERE image_url = ?";
+        int sum = 0;
+
+        try (var conn = DataBaseConnection.getConnection();
+             var pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, imageUrl);
+            var rs = pstmt.executeQuery();
+
+            if(rs.next()) return rs.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Ошибка при получении из Review", e);
+        }
+
+        return 0;
     }
 }
