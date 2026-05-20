@@ -23,7 +23,5 @@
       </RadioButton>
       <RadioButton fx:id="animeRbutton" layoutX="221.0" layoutY="200.0" mnemonicParsing="false" text="Аниме" toggleGroup="$type" />
       <RadioButton fx:id="seriesRbutton" layoutX="357.0" layoutY="200.0" mnemonicParsing="false" text="Сериал" toggleGroup="$type" />
-      <Label layoutX="102.0" layoutY="18.0" text="url" />
-      <TextField fx:id="urlField" layoutX="192.0" layoutY="14.0" />
    </children>
 </Pane>
