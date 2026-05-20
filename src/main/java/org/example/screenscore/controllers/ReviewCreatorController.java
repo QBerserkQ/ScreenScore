@@ -2,16 +2,16 @@ package org.example.screenscore.controllers;
 
 import java.util.function.Consumer;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.screenscore.models.ReviewClass;
 import org.example.screenscore.models.Type;
+import org.example.screenscore.services.ImageService;
 
 public class ReviewCreatorController {
     @FXML
     private TextField titleField;
-    @FXML
-    private TextField urlField;
     @FXML
     private TextField ratingField;
     @FXML
@@ -33,16 +33,54 @@ public class ReviewCreatorController {
 
     private Consumer<ReviewClass> onReviewCreated;
     private Consumer<ReviewClass> onReviewUpdated;
+    private final ImageService imageService = new ImageService();
 
     public void onCreateReviewButtonClicked() {
         if (isEditMode) {
+            String oldTitle = reviewToEdit.getTitle();
             readData(reviewToEdit);
-            onReviewUpdated.accept(reviewToEdit);
+
+            if(!oldTitle.equals(reviewToEdit.getTitle())) {
+                Task<String> task = new Task<>(){
+                    protected String call() throws Exception {
+                        return imageService.download(reviewToEdit.getTitle(), reviewToEdit.getType());
+                    }
+                };
+
+                task.setOnSucceeded(event -> {
+                    reviewToEdit.setImageUrl(task.getValue());
+                    onReviewUpdated.accept(reviewToEdit);
+                });
+
+                task.setOnFailed(event -> onReviewUpdated.accept(reviewToEdit));
+                Thread thread = new Thread(task);
+                thread.start();
+            }else{
+                onReviewUpdated.accept(reviewToEdit);
+            }
+
         }else {
-            createReviewButton.setText("Create");
             ReviewClass reviewClass = new ReviewClass();
             readData(reviewClass);
-            onReviewCreated.accept(reviewClass);
+
+            Task<String> task = new Task<String>() {
+                @Override
+                protected String call() throws Exception {
+                    return imageService.download(reviewClass.getTitle(), reviewClass.getType());
+                }
+            };
+
+            task.setOnSucceeded(event -> {
+                reviewClass.setImageUrl(task.getValue());
+                onReviewCreated.accept(reviewClass);
+            });
+
+            task.setOnFailed(event -> {
+                task.getException().printStackTrace();
+                onReviewCreated.accept(reviewClass);
+            });
+
+            new Thread(task).start();
         }
     }
 
@@ -61,7 +99,6 @@ public class ReviewCreatorController {
         titleField.setText(reviewToEdit.getTitle());
         ratingField.setText(reviewToEdit.getRating() + "");
         descriptionField.setText(reviewToEdit.getDescription());
-        urlField.setText(reviewToEdit.getImageUrl());
 
         if(reviewToEdit.getType() == Type.Movie) {
             movieRbutton.setSelected(true);
@@ -74,7 +111,6 @@ public class ReviewCreatorController {
 
     private void readData(ReviewClass rw){
         String title = titleField.getText();
-        String url = urlField.getText();
 
         int rating;
         try{
@@ -104,7 +140,6 @@ public class ReviewCreatorController {
         rw.setTitle(title);
         rw.setRating(rating);
         rw.setDescription(description);
-        rw.setImageUrl(url);
         rw.setType(type1);
     }
 }
