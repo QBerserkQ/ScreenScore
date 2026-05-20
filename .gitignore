@@ -37,4 +37,10 @@ build/
 
 ### Mac OS ###
 .DS_Storereview.db
-/review.db
+
+### Images ###
+/review.
+
+### Images ###
+images/*
+!images/default.jpg

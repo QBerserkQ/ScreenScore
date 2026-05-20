@@ -65,7 +65,7 @@ public class ImageService {
                 String url = root.get("Poster").asText();
 
                 if(url.equals("N/A"))
-                    return "N/A";
+                    return "images/default.jpg";
 
                 String fileName = root.get("imdbID").asText();
                 String format = url.lastIndexOf(".") == -1 ? ".jpg" : url.substring(url.lastIndexOf("."));
@@ -92,7 +92,7 @@ public class ImageService {
                 e.printStackTrace();
             }
         }
-        return "N/A";
+        return "images/default.jpg";
     }
 
     private String fetchJikan(String title) throws URISyntaxException {
@@ -153,6 +153,17 @@ public class ImageService {
             e.printStackTrace();
         }
 
-        return "N/A";
+        return "images/default.jpg";
+    }
+
+    public void deleteImages(String imagePath){
+        if(imagePath == null || imagePath.isBlank()) return;
+        if(imagePath.equals("images/default.jpg")) return;
+
+        try{
+            Files.deleteIfExists(Paths.get(imagePath));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }
