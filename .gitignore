@@ -38,8 +38,9 @@ build/
 ### Mac OS ###
 .DS_Storereview.db
 
-### Images ###
-/review.
+### Database ###
+review.db
+/review.db
 
 ### Images ###
 images/*
