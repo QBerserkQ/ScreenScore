@@ -15,7 +15,12 @@
       </ImageView>
       <Label fx:id="titleLabel" text="Name" />
       <Label fx:id="ratingLabel" text="Rating" />
-      <Label fx:id="descriptionLabel" maxWidth="300.0" text="Label" wrapText="true" />
+      <Label fx:id="descriptionLabel"
+             maxWidth="300.0"
+             maxHeight="60"
+             text="Label"
+             textOverrun="ELLIPSIS"
+             wrapText="true" />
       <HBox alignment="CENTER" spacing="50.0">
          <children>
             <Button mnemonicParsing="false" text="Update" onAction="#onUpdateButtonClicked"/>
