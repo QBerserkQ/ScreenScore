@@ -7,7 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.screenscore.models.ReviewClass;
 import org.example.screenscore.models.Type;
@@ -125,6 +127,28 @@ public class ReviewCardController {
 
             stage.show();
         }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void onReviewCardClicked() {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/screenscore/views" +
+                    "/review_card_full_template.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Full information");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            FullReviewCardController controller = loader.getController();
+            controller.addInfo(review.getTitle(), review.getImageUrl(),
+                    review.getRating(), review.getDescription());
+
+            stage.show();
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
