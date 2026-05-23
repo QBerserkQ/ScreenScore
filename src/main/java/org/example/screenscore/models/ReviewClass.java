@@ -70,4 +70,8 @@ public class ReviewClass {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public String toString(){
+        return title + " " + rating;
+    }
 }
