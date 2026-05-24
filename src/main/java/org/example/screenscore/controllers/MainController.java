@@ -3,19 +3,22 @@ package org.example.screenscore.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
+import org.example.screenscore.models.Filters;
 import org.example.screenscore.models.ReviewClass;
 import org.example.screenscore.services.ReviewService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainController {
     @FXML
-    public TextField searchField;
+    private TextField searchField;
 
     @FXML
     private FlowPane flowPane;
@@ -23,13 +26,25 @@ public class MainController {
     @FXML
     private ScrollPane scrollPane;
 
+    @FXML
+    public ChoiceBox<String> FilterChoiceBox;
+
     private ReviewService reviewService;
 
     private List<ReviewClass> listReviews = new ArrayList();
 
+    private Filters filter = Filters.Rating_Desc;
+
     @FXML
     public void initialize() {
         flowPane.prefWidthProperty().bind(scrollPane.widthProperty());
+
+        FilterChoiceBox.getItems().addAll(Filters.getFilters());
+        FilterChoiceBox.setOnAction(e -> {
+            this.filter = Filters.getFilter(FilterChoiceBox.getValue());
+            applyFilters(searchField.getText());
+        });
+
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
            applyFilters(newValue);
         });
@@ -90,10 +105,27 @@ public class MainController {
 
         String filter = newValue.trim().toLowerCase();
 
-        for (ReviewClass review : listReviews) {
-            if(review.getTitle().toLowerCase().contains(filter)) {
-                renderCard(review);
-            }
+        List<ReviewClass> tmp = new ArrayList<>(listReviews);
+        tmp.removeIf(r -> !(r.getTitle().toLowerCase().contains(filter)));
+        sortReviews(tmp);
+
+        for (ReviewClass review : tmp) {
+            renderCard(review);
         }
     }
+
+    private void sortReviews(List<ReviewClass> r) {
+        switch (filter) {
+            case Alpha_Asc -> r.sort(alphaAsc);
+            case Alpha_Desc -> r.sort(alphaAsc.reversed());
+            case Rating_Asc -> r.sort(ratingAsc);
+            case Rating_Desc -> r.sort(ratingAsc.reversed());
+        }
+    }
+
+    private final Comparator<ReviewClass> alphaAsc =
+            Comparator.comparing(t -> t.getTitle().toLowerCase());
+
+    private final Comparator<ReviewClass> ratingAsc =
+            Comparator.comparing(ReviewClass::getRating);
 }
