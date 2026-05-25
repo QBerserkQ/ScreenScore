@@ -13,6 +13,9 @@ public class ScreenScoreController {
     private SideBarController sidebarController;
 
     @FXML
+    private DetailController detailController;
+
+    @FXML
     private MainController mainController;
 
     private static final ReviewService reviewService = new ReviewService();
@@ -23,6 +26,7 @@ public class ScreenScoreController {
         List<ReviewClass> list = reviewService.getAllReviews();
 
         mainController.setListReviews(list);
+        detailController.updateStats(list);
 
         sidebarController.setOnReviewCreated(review -> {
             ReviewClass rw = reviewService.addReview(review);
