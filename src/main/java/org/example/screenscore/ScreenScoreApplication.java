@@ -3,6 +3,7 @@ package org.example.screenscore;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class ScreenScoreApplication extends Application {
         stage.setTitle("Screen Score");
         stage.setScene(scene);
         stage.setMaximized(true);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream(
+                "/org/example/screenscore/ScreenScoreIcon.png")));
         stage.show();
     }
 }
