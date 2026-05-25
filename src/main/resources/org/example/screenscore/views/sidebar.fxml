@@ -9,7 +9,10 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox styleClass="sidebar" maxHeight="-Infinity" maxWidth="350.0" minHeight="-Infinity" minWidth="180.0" prefHeight="600.0" prefWidth="250.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.screenscore.controllers.SideBarController">
+<VBox styleClass="sidebar" maxWidth="350.0"
+      minWidth="180.0" prefWidth="250.0"
+      spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.screenscore.controllers.SideBarController">
    <children>
       <Label prefHeight="55.0" prefWidth="242.0" text="Screen Score">
          <textFill>
@@ -37,11 +40,11 @@
             <Font name="Century Gothic" size="24.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="All" onAction="#onAllReviewsClicked"/>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Movies" onAction="#onMovieReviewsClicked"/>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Series" onAction="#onSeriesReviewsClicked"/>
-      <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Anime" onAction="#onAnimeReviewsClicked"/>
-      <Button fx:id="newReview" mnemonicParsing="false" onAction="#onNewReviewClicked" prefHeight="26.0" prefWidth="120.0" text="Create New" />
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="All" onAction="#onAllReviewsClicked"/>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Movies" onAction="#onMovieReviewsClicked"/>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Series" onAction="#onSeriesReviewsClicked"/>
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" text="Anime" onAction="#onAnimeReviewsClicked"/>
+      <Button fx:id="newReview" mnemonicParsing="false" onAction="#onNewReviewClicked" prefHeight="45.0" prefWidth="180.0" text="Create New" />
    </children>
    <padding>
       <Insets left="20.0" />

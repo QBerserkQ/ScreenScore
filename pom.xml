@@ -93,6 +93,11 @@
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
+                            <options>
+                                <option>--enable-native-access=javafx.graphics</option>
+                                <option>--enable-native-access=org.xerial.sqlitejdbc</option>
+                                <option>--enable-native-access=ALL-UNNAMED</option>
+                            </options>
                         </configuration>
                     </execution>
                 </executions>

@@ -6,22 +6,41 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane styleClass="review-card" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.screenscore.controllers.ReviewCreatorController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="review-card" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.screenscore.controllers.ReviewCreatorController">
    <children>
-      <Button fx:id="createReviewButton" layoutX="274.0" layoutY="344.0" mnemonicParsing="false" onAction="#onCreateReviewButtonClicked" text="СОздать" />
-      <Label layoutX="100.0" layoutY="60.0" text="Название" />
-      <Label layoutX="105.0" layoutY="101.0" text="Оценка" />
-      <Label layoutX="99.0" layoutY="139.0" text="Описание" />
-      <TextField fx:id="titleField" layoutX="190.0" layoutY="56.0" />
-      <TextField fx:id="ratingField" layoutX="190.0" layoutY="97.0" />
-      <TextField fx:id="descriptionField" layoutX="190.0" layoutY="135.0" />
-      <RadioButton fx:id="movieRbutton" layoutX="83.0" layoutY="200.0" mnemonicParsing="false" text="Фильм">
+      <Button fx:id="createReviewButton" layoutX="241.0" layoutY="310.0" mnemonicParsing="false" onAction="#onCreateReviewButtonClicked" prefHeight="45.0" prefWidth="119.0" text="Create" />
+      <Label alignment="CENTER" layoutX="82.0" layoutY="75.0" prefHeight="25.0" prefWidth="95.0" text="Title">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="81.0" layoutY="165.0" prefHeight="25.0" prefWidth="95.0" text="Rating">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="81.0" layoutY="120.0" prefHeight="25.0" prefWidth="95.0" text="Description">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <TextField fx:id="titleField" layoutX="219.0" layoutY="75.0" prefHeight="25.0" prefWidth="300.0" />
+      <TextField fx:id="ratingField" layoutX="218.0" layoutY="165.0" prefHeight="25.0" prefWidth="300.0" />
+      <TextField fx:id="descriptionField" layoutX="218.0" layoutY="120.0" prefHeight="25.0" prefWidth="300.0" />
+      <RadioButton fx:id="movieRbutton" layoutX="115.0" layoutY="245.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="95.0" text="Movie">
          <toggleGroup>
             <ToggleGroup fx:id="type" />
          </toggleGroup>
+         <font>
+            <Font size="14.0" />
+         </font>
       </RadioButton>
-      <RadioButton fx:id="animeRbutton" layoutX="221.0" layoutY="200.0" mnemonicParsing="false" text="Аниме" toggleGroup="$type" />
-      <RadioButton fx:id="seriesRbutton" layoutX="357.0" layoutY="200.0" mnemonicParsing="false" text="Сериал" toggleGroup="$type" />
+      <RadioButton fx:id="animeRbutton" layoutX="253.0" layoutY="245.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="95.0" text="Anime" toggleGroup="$type">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="seriesRbutton" layoutX="389.0" layoutY="245.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="95.0" text="Series" toggleGroup="$type">
+         <font>
+            <Font size="14.0" />
+         </font></RadioButton>
    </children>
 </Pane>

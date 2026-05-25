@@ -9,26 +9,32 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox styleClass="detail-panel" maxHeight="-Infinity" alignment="CENTER"
-      maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="400.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/25"
+<?import javafx.geometry.Insets?>
+<VBox styleClass="detail-panel"
+      maxWidth="-Infinity" minHeight="-Infinity"
+      prefWidth="300.0" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.example.screenscore.controllers.DetailController">
+
+    <padding>
+        <Insets top="10" />
+    </padding>
+
    <children>
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="250.0" text="Statistics" textAlignment="CENTER">
+      <Label alignment="CENTER" prefHeight="40.0" prefWidth="300.0" text="Statistics" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Line endX="250.0" />
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="250.0" text="Reviews by Type" textAlignment="CENTER">
+      <Line endX="300.0" />
+      <Label alignment="CENTER" prefHeight="40.0" prefWidth="300.0" text="Reviews by Type" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <PieChart fx:id="pieChart" prefHeight="150.0" />
-      <Line endX="250.0" />
-      <Label alignment="CENTER" prefHeight="40.0" prefWidth="250.0" text="Rating Distribution" textAlignment="CENTER">
+      <Line endX="300.0" />
+      <Label alignment="CENTER" prefHeight="40.0" prefWidth="300.0" text="Rating Distribution" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>

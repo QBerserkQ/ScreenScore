@@ -76,11 +76,11 @@ public class ReviewCardController {
         Type t = review.getType();
 
         if(t == Type.Movie)
-            style = "-fx-background-color: #00739e;";
+            style = "-fx-background-color: #2a5298;";
         else if(t == Type.Series)
-            style = "-fx-background-color: #00839e;";
+            style = "-fx-background-color: #1a6b5a;";
         else
-            style = "-fx-background-color: #e95ea6;";
+            style = "-fx-background-color: #8b2a5a;";
 
         vbox.setStyle(style);
     }
@@ -114,7 +114,10 @@ public class ReviewCardController {
 
             Stage stage = new Stage();
             stage.setTitle("Update Review");
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource(
+                    "/org/example/screenscore/style/style.css").toExternalForm());
+            stage.setScene(scene);
 
             ReviewCreatorController controller = loader.getController();
             controller.setEditMode(review);
