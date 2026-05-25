@@ -1,0 +1,229 @@
+/* ===================== ROOT & GLOBAL ===================== */
+.root {
+    -fx-background-color: #0f0f1a;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+    -fx-background-color: #13131f;
+    -fx-border-color: #2a2a3d;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar .label {
+    -fx-text-fill: #e0e0ff;
+}
+
+/* Sidebar buttons */
+.sidebar .button {
+    -fx-background-color: #1e1e30;
+    -fx-text-fill: #a0a0c0;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 20 8 20;
+    -fx-font-size: 13px;
+}
+
+.sidebar .button:hover {
+    -fx-background-color: #7b68ee;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, #7b68ee88, 10, 0, 0, 0);
+}
+
+.sidebar .button:pressed {
+    -fx-background-color: #5a4fcf;
+    -fx-text-fill: #ffffff;
+}
+
+/* ===================== MAIN AREA ===================== */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: #1a1a2e;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #7b68ee;
+    -fx-background-radius: 4;
+}
+
+/* Search field */
+.text-field {
+    -fx-background-color: #1e1e30;
+    -fx-text-fill: #e0e0ff;
+    -fx-prompt-text-fill: #5a5a7a;
+    -fx-border-color: #2a2a3d;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12 8 12;
+}
+
+.text-field:focused {
+    -fx-border-color: #7b68ee;
+    -fx-effect: dropshadow(gaussian, #7b68ee55, 8, 0, 0, 0);
+}
+
+/* ChoiceBox */
+.choice-box {
+    -fx-background-color: #1e1e30;
+    -fx-border-color: #2a2a3d;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.choice-box .label {
+    -fx-text-fill: #a0a0c0;
+}
+
+.choice-box .arrow {
+    -fx-background-color: #7b68ee;
+}
+
+.choice-box:hover {
+    -fx-border-color: #7b68ee;
+}
+
+.context-menu {
+    -fx-background-color: #1e1e30;
+    -fx-border-color: #2a2a3d;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+}
+
+.menu-item .label {
+    -fx-text-fill: #a0a0c0;
+}
+
+.menu-item:focused {
+    -fx-background-color: #7b68ee;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: #ffffff;
+}
+
+/* ===================== REVIEW CARDS ===================== */
+.review-card {
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, #00000088, 12, 0, 0, 4);
+    -fx-cursor: hand;
+    -fx-padding: 10;
+}
+
+.review-card .label {
+    -fx-text-fill: #ffffff;
+}
+
+.review-card .button {
+    -fx-background-color: #ffffff22;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-cursor: hand;
+    -fx-padding: 5 14 5 14;
+}
+
+.review-card .button:hover {
+    -fx-background-color: #ffffff44;
+}
+
+/* ===================== DETAIL / STATS PANEL ===================== */
+.detail-panel {
+    -fx-background-color: #13131f;
+    -fx-border-color: #2a2a3d;
+    -fx-border-width: 0 0 0 1;
+}
+
+.detail-panel .label {
+    -fx-text-fill: #e0e0ff;
+}
+
+/* Charts */
+.chart {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.chart-plot-background {
+    -fx-background-color: #1a1a2e;
+    -fx-background-radius: 8;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item {
+    -fx-text-fill: #a0a0c0;
+}
+
+.axis {
+    -fx-tick-label-fill: #a0a0c0;
+}
+
+.axis-label {
+    -fx-text-fill: #a0a0c0;
+}
+
+/* PieChart slices */
+.default-color0.chart-pie { -fx-pie-color: #7b68ee; }
+.default-color1.chart-pie { -fx-pie-color: #00c9a7; }
+.default-color2.chart-pie { -fx-pie-color: #e95ea6; }
+
+/* BarChart bars */
+.default-color0.chart-bar { -fx-bar-fill: #7b68ee; }
+
+/* ===================== REVIEW CREATOR WINDOW ===================== */
+.label {
+    -fx-text-fill: #a0a0c0;
+}
+
+.radio-button {
+    -fx-text-fill: #a0a0c0;
+}
+
+.radio-button:selected {
+    -fx-text-fill: #7b68ee;
+}
+
+.radio-button .radio {
+    -fx-border-color: #7b68ee;
+    -fx-background-color: transparent;
+}
+
+.radio-button:selected .radio {
+    -fx-background-color: #7b68ee;
+}
+
+.button {
+    -fx-background-color: #7b68ee;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 8 20 8 20;
+}
+
+.button:hover {
+    -fx-background-color: #9585f0;
+    -fx-effect: dropshadow(gaussian, #7b68ee88, 10, 0, 0, 0);
+}
+
+.button:pressed {
+    -fx-background-color: #5a4fcf;
+}

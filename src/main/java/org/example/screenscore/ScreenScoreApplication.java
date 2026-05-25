@@ -12,6 +12,7 @@ public class ScreenScoreApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ScreenScoreApplication.class.getResource("ScreenScore-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
+        scene.getStylesheets().add(getClass().getResource("style/style.css").toExternalForm());
         stage.setTitle("Screen Score");
         stage.setScene(scene);
         stage.show();

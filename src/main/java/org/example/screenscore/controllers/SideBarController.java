@@ -30,7 +30,10 @@ public class SideBarController {
 
             Stage stage = new Stage();
             stage.setTitle("New Review");
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource(
+                    "/org/example/screenscore/style/style.css").toExternalForm());
+            stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 

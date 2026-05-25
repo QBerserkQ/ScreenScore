@@ -141,6 +141,8 @@ public class ReviewCardController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Full information");
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource(
+                    "/org/example/screenscore/style/style.css").toExternalForm());
             stage.setScene(scene);
 
             FullReviewCardController controller = loader.getController();
