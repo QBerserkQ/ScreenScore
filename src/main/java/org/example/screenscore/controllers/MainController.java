@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MainController {
     @FXML
@@ -50,6 +51,12 @@ public class MainController {
         });
     }
 
+    private Consumer<Integer> onReviewDeleted;
+
+    public void setOnReviewDeleted(Consumer<Integer> onReviewDeleted) {
+        this.onReviewDeleted = onReviewDeleted;
+    }
+
     public void setReviewService(ReviewService reviewService) {
         this.reviewService = reviewService;
     }
@@ -77,6 +84,7 @@ public class MainController {
                 reviewService.deleteReview(id);
                 flowPane.getChildren().remove(card);
                 listReviews.remove(review);
+                if( onReviewDeleted != null ) onReviewDeleted.accept(id);
             });
 
             cardController.setOnReviewUpdated(rw -> {

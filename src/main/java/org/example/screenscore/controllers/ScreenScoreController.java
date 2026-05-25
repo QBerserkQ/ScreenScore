@@ -30,7 +30,9 @@ public class ScreenScoreController {
 
         sidebarController.setOnReviewCreated(review -> {
             ReviewClass rw = reviewService.addReview(review);
+            list.add(rw);
             mainController.addNewReview(rw);
+            detailController.updateStats(list);
         });
 
         sidebarController.setOnReviewType(t -> {
@@ -40,5 +42,10 @@ public class ScreenScoreController {
                     mainController.setListReviews(list1);
                 }
         );
+
+        mainController.setOnReviewDeleted(id -> {
+           list.removeIf(r -> r.getId() == id);
+           detailController.updateStats(list);
+        });
     }
 }
