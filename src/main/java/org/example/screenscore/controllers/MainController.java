@@ -57,18 +57,12 @@ public class MainController {
     public void setListReviews(List<ReviewClass> listReviews) {
         clearReviewCard();
         this.listReviews = listReviews;
-        addAllReviews();
+        applyFilters(searchField.getText());
     }
 
     public void addNewReview(ReviewClass review) {
         listReviews.add(review);
         renderCard(review);
-    }
-
-    private void addAllReviews(){
-        for (ReviewClass r : listReviews){
-            renderCard(r);
-        }
     }
 
     private void renderCard(ReviewClass review) {
